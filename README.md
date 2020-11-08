@@ -4,5 +4,6 @@ Funciones actuales:
 Convertir de sistema decimal a otros sistemas numericos 
 Convertir de otro sistema numerico a sistema decimal 
 Operaciones basicas en diferentes bases numericas 
-Funciones futuras: 
 Obtener el MCM y el MCD de cualquier numero
+Funciones futuras: 
+
