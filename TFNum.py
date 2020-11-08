@@ -1,4 +1,4 @@
-from numpy import array as np
+import numpy as np
 import funciones as fun
 hexa={
       'A':"10",
@@ -32,10 +32,10 @@ def to_vec(x,longit):
     for i in (range(longit)):
         k=k+1
         a=""
-        while x[k]!=' ' and x[k]!='.':
+        while x[k]!=' ' and x[k]!='.' and x[k]!=',':
             a=a+x[k]
             k=k+1
-        if a=='A' or a=='B' or a=='C' or a=='D' or a=='E' or a=='F' or a=='a' or a=='b' or a=='c' or a=='e' or a=='e' or a=='f':
+        if a=='A' or a=='B' or a=='C' or a=='D' or a=='E' or a=='F' or a=='G' or a=='H' or a=='I' or a=='J' or a=='K' or a=='a' or a=='b' or a=='c' or a=='e' or a=='e' or a=='f' or a=='g' or a=='h' or a=='i' or a=='j' or a=='k':
             a=hexa.get(a)
         arr[i]=int(a)
     return arr

@@ -1,3 +1,4 @@
+import numpy as np
 def containt(x,a):
     val=False
     for i in range(len(x)):
@@ -68,11 +69,11 @@ def tohex(x,longit):
         while x[k]!=' ' and x[k]!=',':
             a=a+x[k]
             k=k+1
-        if a=="10" or a=="11" or a=="12" or a=="13" or a=="14" or a=="15":
+        if a=="10" or a=="11" or a=="12" or a=="13" or a=="14" or a=="15" or a=="16" or a=="17" or a=="18" or a=="19" or a=="20":
             a=dechexa.get(a)
         st=st+a+" "
     return st
-def mcm(a,b):
+def mcd(a,b):
     t=0
     while (a%b)!=0:
         t=(a%b)
@@ -82,4 +83,21 @@ def mcm(a,b):
         t=t
     else:
         t=b;
+    print(t)
     return t
+def mcm(a,b):
+    return (a*b)/mcd(a,b)
+
+def to_vec(x,longit):
+    arr=np.array(range(longit))
+    k=-1
+    a=""
+    x=x+" "
+    for i in (range(longit)):
+        k=k+1
+        a=""
+        while x[k]!=' ' and x[k]!='.' and x[k]!=',':
+            a=a+x[k]
+            k=k+1
+        arr[i]=int(a)
+    return arr
