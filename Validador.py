@@ -25,16 +25,24 @@ def volver(org,inst):
     inst.destroy()
     
 def decbas(inst):
+    
+    def convertirdb(obj,a,b):
+        obj.delete(0,100)
+        t=cvn.d2bc(a,int(b))
+        lon=fun.arrlen(t,True)
+        obj.insert(0,fun.tohex(t,lon))
+    
+
     cd=subventana(inst,"De sistema decimal a otro sistema","500x250",False,False)
     #objetos de la interfaz
     text=Entry(cd,font=("Calibri 12"))
     salida=Entry(cd,font=("Calibri 12"))
     sp=Entry(cd,font=("Calibri 12"),width=5)
-    backb=Button(cd,text="Volver al menu",width=12,height=2,command=lambda: volver(inst,cd))
-    accept=Button(cd,text="aceptar",width=11,height=2,command=lambda: convertirdb(salida,text.get(),sp.get()))
     label1=Label(cd,text="Numero inicial:",width=15,height=5)
     label2=Label(cd,text="Numero convertido:",width=15,height=5)
     label3=Label(cd,text="Base:",width=5,height=5)
+    backb=Button(cd,text="Volver al menu",width=12,height=2,command=lambda: volver(inst,cd))
+    accept=Button(cd,text="aceptar",width=11,height=2,command=lambda: convertirdb(salida,text.get(),sp.get()))
     #ubicacion
     label1.grid(row=0,column=0,padx=1,pady=1)
     label2.grid(row=1,column=0,padx=1,pady=1)
@@ -45,13 +53,9 @@ def decbas(inst):
     salida.grid(row=1,columnspan=4,column=1,padx=1,pady=1)
     backb.grid(row=3,column=0,padx=0,pady=1)
     cd.mainloop()
-    def convertirdb(obj,a,b):
-        obj.delete(0,100)
-        t=cvn.d2bc(a,int(b))
-        lon=fun.arrlen(t,True)
-        obj.insert(0,fun.tohex(t,lon))
     
-    
+
+        
 def basdec(inst):
     bd=subventana(inst,"de otro sistema numerico a sistema decimal","560x250",False,False)
     #objetos
@@ -171,6 +175,8 @@ def mcmmcd(inst):
         mcd.delete(0,100)
         mcm.insert(0,mc.fmcd(p))
         mcd.insert(0,mc.fmcm(p))
+
+
 def op_menu():
     vent=ventana("Validador","530x380",False,False)
     #objetos de la interfaz
