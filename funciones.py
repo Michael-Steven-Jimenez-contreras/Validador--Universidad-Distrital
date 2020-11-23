@@ -12,6 +12,15 @@ def elim(x,a):
             c=c+x[i]
     return c
 
+def repl(x,a,b):
+    c=""
+    for i in range(len(x)):
+        if x[i]!=a:
+            c=c+x[i]
+        else:
+            c=c+b
+    return c
+
 def obtent(x):
     i=0
     a=""
@@ -83,7 +92,6 @@ def mcd(a,b):
         t=t
     else:
         t=b;
-    print(t)
     return t
 def mcm(a,b):
     return (a*b)/mcd(a,b)

@@ -8,7 +8,7 @@ def fmcd(x:str):
     while(i<fun.arrlen(x,True)):
         vmcd=fun.mcd(vmcd,arr[i])
         i=i+1
-    return vmcd
+    return abs(vmcd)
 
 def fmcm(x:str):
     arr=fun.to_vec(x,fun.arrlen(x,True))
@@ -18,3 +18,4 @@ def fmcm(x:str):
         vmcm=fun.mcm(vmcm,arr[i])
         i=i+1
     return vmcm
+

@@ -1,4 +1,3 @@
-#Prueba de conversion con cadenas
 import funciones as fun
 def d2bc(x,n):
     if(fun.containt(x,'.')==False):

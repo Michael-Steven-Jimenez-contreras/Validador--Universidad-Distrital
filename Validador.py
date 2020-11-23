@@ -1,22 +1,23 @@
-from tkinter import Label,Button,Toplevel,Entry,Tk
+from tkinter import *#Label,Button,Toplevel,Entry,Tk,Checkbutton
 import Converciones_dec_otr as cvn
 import funciones as fun
 import TFNum
 import MCM_y_MCD as mc
+import factores
 from functools import partial
 
         
-def ventana(titulo:str,tamaño:str,h:bool,v:bool):
+def ventana(titulo:str,tam:str,h:bool,v:bool):
     vent=Tk()
     vent.title(titulo)
-    vent.geometry(tamaño)
+    vent.geometry(tam)
     vent.resizable(width=h , height=v)
     return vent
-def subventana(inst,titulo:str,tamaño:str,h:bool,v:bool):
+def subventana(inst,titulo:str,tam:str,h:bool,v:bool):
     vent=Toplevel(inst)
     inst.withdraw()
     vent.title(titulo)
-    vent.geometry(tamaño)
+    vent.geometry(tam)
     vent.resizable(width=h , height=v)
     vent.protocol("WM_DELETE_WINDOW", partial(volver, inst,vent))
     return vent
@@ -148,7 +149,7 @@ def oper(inst):
         obj.insert(0,fun.tohex(a,lon))
     
 def mcmmcd(inst):
-    vent=subventana(inst,"Operaciones en otras bases","500x300",False,False)
+    vent=subventana(inst,"Operaciones en otras bases","500x150",False,False)
     #objetos
     entrada=Entry(vent,font=("Calibri 12"))
     salida1=Entry(vent,font=("Calibri 12"))
@@ -156,8 +157,8 @@ def mcmmcd(inst):
     aceptar=Button(vent,text="aceptar",width=11,height=2,command=lambda: mcmyd(entrada.get(),salida1,salida2))
     backb=Button(vent,text="Volver al menu",width=11,height=2,command=lambda: volver(inst,vent))
     label1=Label(vent,text="Entrada(ej 5,2,5)")
-    label2=Label(vent,text="MCM")
-    label3=Label(vent,text="MCD")
+    label2=Label(vent,text="MCD")
+    label3=Label(vent,text="MCM")
     #Ubicacion
     label1.grid(row=0,column=0,padx=0,pady=5)
     entrada.grid(row=0,column=1,columnspan=2,padx=0,pady=5)
@@ -176,6 +177,41 @@ def mcmmcd(inst):
         mcm.insert(0,mc.fmcd(p))
         mcd.insert(0,mc.fmcm(p))
 
+def facto(inst):
+    vent=subventana(inst,"Factores","500x200",False,False)
+    
+    label1=Label(vent,text="Entrada(ej 34)")
+    entrada=Entry(vent,font=("Calibri 12"))
+    label2=Label(vent,text="Factores")
+    salida1=Entry(vent,font=("calibri 12"))
+    label3=Label(vent,text="E.suma de primos")
+    salida2=Entry(vent,font=("calibri 12"))
+    val=BooleanVar()
+    completo=Checkbutton(vent,text="Completo?",variable=val)
+    aceptar1=Button(vent,text="aceptar",width=11,height=2,command=lambda: fac(entrada,salida1))
+    aceptar2=Button(vent,text="aceptar",width=11,height=2,command=lambda: sprm(entrada,salida2,val))
+    
+    backb=Button(vent,text="Volver al menu",width=11,height=2,command=lambda: volver(inst,vent))
+    
+    label1.grid(row=0,column=0,padx=0,pady=5)
+    entrada.grid(row=0,column=1,columnspan=4,padx=0,pady=5)
+    label2.grid(row=1,column=0,padx=0,pady=5)
+    salida1.grid(row=1,column=1,columnspan=4,padx=0,pady=5)
+    aceptar1.grid(row=1,column=5,padx=5,pady=5)
+    
+    label3.grid(row=2,column=0,padx=0,pady=5)
+    salida2.grid(row=2,column=1,columnspan=4,padx=0,pady=5)
+    aceptar2.grid(row=2,column=5,padx=5,pady=5)
+    completo.grid(row=2,column=6,padx=0,pady=5)
+    
+    backb.grid(row=3,column=0,padx=0,pady=5)
+    
+    def sprm(p,sump,completo):
+        sump.delete(0,100)
+        sump.insert(0,fun.elim(fun.elim(fun.elim(str(factores.suma_de_primos(int(p.get()),completo.get())),"["),"]"),"'"))
+    def fac(p,fact):
+        fact.delete(0,100)
+        fact.insert(0,factores.factor2(factores.factor(int(p.get()),True)))   
 
 def op_menu():
     vent=ventana("Validador","530x380",False,False)
@@ -189,6 +225,7 @@ def op_menu():
     
     seccion2=Label(vent,text="Otras operaciones")
     bmcm=Button(vent,text="MCM y MCD de un conjunto",width=25,height=5,command=lambda: mcmmcd(vent))
+    factors=Button(vent,text="Factores de un numero",width=25,height=5,command=lambda: facto(vent))
     #ubicacion
     #aut.grid(row=0,column=0,padx=0,pady=5)
     mater.grid(row=1,column=0,padx=0,pady=5)
@@ -199,7 +236,8 @@ def op_menu():
     
     seccion2.grid(row=5,column=0,padx=0,pady=5)
     bmcm.grid(row=6,column=0,padx=5,pady=5)
+    factors.grid(row=6,column=1,padx=5,pady=5)
     vent.mainloop()
-        
+
 if __name__=='__main__':
     op_menu()
