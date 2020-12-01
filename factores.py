@@ -70,9 +70,9 @@ def csum(n):#busca todas las expresiones de un numero como suma de numeros primo
     return st
 
 def suma_de_primos(n,complete=False):#actua de intermediario entre la ventana que llama a la funcion y las dos funciones para expresiones de sumas de primos
-    if complete==False and n<10000:
+    if complete==False and n<6000:
         return psum(n)
-    else:
+    elif n<10000:
         return csum(n)
     
 def divs(n):#halla los divisores propios de un numero
