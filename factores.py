@@ -74,3 +74,19 @@ def suma_de_primos(n,complete=False):#actua de intermediario entre la ventana qu
         return psum(n)
     else:
         return csum(n)
+    
+def divs(n,divs=[]):#halla los divisores propios de un numero
+    f=2
+    while f<n:#prueba todos los numeros hasta n
+        if (n/f)==int(n/f):
+            divs.append(f)
+        f=f+1
+    return divs
+def divsP(n):#halla los divisores primos de un numero
+    f=0
+    divs=[]
+    while primo(f)<n:#prueba todos los numeros primos hasta n
+        if (n/primo(f))==int(n/primo(f)):
+            divs.append(primo(f))
+        f=f+1
+    return divs
