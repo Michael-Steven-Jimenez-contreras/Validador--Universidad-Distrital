@@ -5,10 +5,15 @@ def clean_l(a:list):#organiza la lista poniendo el 1 al principio
             n.append(a[i])
     return n
 
-def pfactor(n):#halla el primer factor primo de un numero n 
+def pfactor(n,primos=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211]):#halla el primer factor primo de un numero n 
     f=2
-    while(int(n/f)!=(n/f)) and f<=int(pow(n,0.5)):#solo comprueba los numeros primos hasta la raiz de n
-        f=f+1
+    c=(primos[len(primos)-1]-1)/2 #es mas eficiente si se le da una lista para que elimine primos conocidos, cuando termina la lista necesita un numero impar desde el que partir para seguir buscando primos
+    for i in range(len(primos)):
+        if n%primos[i]==0:
+            return int(primos[i])
+    while(n%f==0) and f<=int(pow(n,0.5)):#solo comprueba los numeros primos hasta la raiz de n
+        f=2*c+1#todos los numeros primos diferentes de 2 son impares y tienen la forma 2c+1
+        c=c+1
     if (int(n/f)!=(n/f)):#Cuando se pasa el limite de la raiz, lo ultimo que hace es fijar como factor de n a n
         f=n
     return int(f)
@@ -27,23 +32,26 @@ def factor2(a):#toma una lista de factores y los combierte en una expresion de m
         st=st+"*"+str(a[i+1])
     return st
 
-def primo(n):#busca en n-avo numero primo
+def primo(n,c=1):#busca en n-avo numero primo
     i=0
     k=2
-    a=1
+    a=2
     while i<=n:
         if pfactor(k)==k:#un numero primo es el que su primer factor diferente de 1 es el mismo
             i=i+1#añade 1 a la cuenta de primos
             a=k#fija a al primo encontrado
-        k=k+1
+        k=2*c+1
+        c=c+1
     return a
 
-def primo1(n):#hace una lista ordenada de primos hasta el n-avo numero primo
+def primo1(n,c=1):#hace una lista ordenada de primos hasta el n-avo numero primo
     a=[]
     i=0
     while(len(a)<=n):
-        a.append(primo(i))
+        a.append(primo(i,c))
         i=i+1
+    if c!=1:
+        a.remove(2)
     return a
 
 
@@ -70,9 +78,9 @@ def csum(n):#busca todas las expresiones de un numero como suma de numeros primo
     return st
 
 def suma_de_primos(n,complete=False):#actua de intermediario entre la ventana que llama a la funcion y las dos funciones para expresiones de sumas de primos
-    if complete==False and n<6000:
+    if complete==False and n<100000000000:
         return psum(n)
-    elif n<10000:
+    elif n<6000:
         return csum(n)
     
 def divs(n):#halla los divisores propios de un numero
@@ -91,3 +99,5 @@ def divsP(n):#halla los divisores primos de un numero
         if div[i]==pfactor(div[i]):
             divp.append(div[i])
     return divp
+
+print(divsP(29385))
