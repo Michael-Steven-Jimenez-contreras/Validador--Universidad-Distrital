@@ -207,10 +207,10 @@ def facto(inst):
     backb.grid(row=3,column=0,padx=0,pady=5)
     
     def sprm(p,sump,completo):
-        sump.delete(0,100)
+        sump.delete(0,1000)
         sump.insert(0,fun.elim(fun.elim(fun.elim(str(factores.suma_de_primos(int(p.get()),completo.get())),"["),"]"),"'"))
     def fac(p,fact):
-        fact.delete(0,100)
+        fact.delete(0,1000)
         fact.insert(0,factores.factor2(factores.factor(int(p.get()),True)))   
 
 def op_menu():
