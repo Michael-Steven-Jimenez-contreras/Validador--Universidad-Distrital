@@ -54,7 +54,7 @@ def arrlen(x,dat):
                 n=n+1
             i=i+1
     return n
-dechexa={
+dechexa={#se llama hexa pero va hasta 20
     "10":'A',
     "11":'B',
     "12":'C',
