@@ -1,3 +1,5 @@
+import funciones as fun
+
 def clean_l(a:list):#organiza la lista poniendo el 1 al principio
     n=[1]
     for i in range(len(a)):
@@ -110,3 +112,12 @@ def sigma(n):
     return s+n
 def tau(n):
     return len(divsP(n))
+
+def fi(n):
+    a=0
+    for i in range(1,n):
+        if fun.mcd(i,n)==1:
+            a+=1
+    return a
+
+print(fi(10))
