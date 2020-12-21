@@ -83,19 +83,30 @@ def suma_de_primos(n,complete=False):#actua de intermediario entre la ventana qu
     elif n<100000000000:
         return psum(n)
     
-def divs(n):#halla los divisores propios de un numero
-    divs=[]
-    f=2
-    while f<n:#prueba todos los numeros hasta n
-        if (n/f)==int(n/f):
-            divs.append(f)
-        f=f+1
-    return divs
 def divsP(n):#halla los divisores primos de un numero
-    div=divs(n)
     divp=[]
-    for i in range(len(div)):
-        
-        if div[i]==pfactor(div[i]):
-            divp.append(div[i])
+    for i in range(n):
+        if i==pfactor(i) and n%i==0:
+            divp.append(i)
     return divp
+
+def fact(n):#factorial de un numero n
+	if n>1:
+		return n*fact(n-1)
+	else:
+		return 1
+
+def can(n,p,l=1):#aparicion de un p primo con un exponente en n factorial
+    if pow(p,l)<=n:
+        return int(n/pow(p,l))+can(n,p,l+1)
+    else:
+        return 0
+    
+def sigma(n):
+    a=divsP(n)
+    s=0
+    for i in range(len(a)):
+        s=s+a[i]
+    return s+n
+def tau(n):
+    return len(divsP(n))
