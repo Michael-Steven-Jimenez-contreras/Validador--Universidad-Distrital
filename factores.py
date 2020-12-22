@@ -13,7 +13,7 @@ def pfactor(n,primos=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53
     for i in range(len(primos)):
         if n%primos[i]==0:
             return int(primos[i])
-    while(n%f==0) and f<=int(pow(n,0.5)):#solo comprueba los numeros primos hasta la raiz de n
+    while(n%f!=0) and f<=int(pow(n,0.5)):#solo comprueba los numeros primos hasta la raiz de n
         f=2*c+1#todos los numeros primos diferentes de 2 son impares y tienen la forma 2c+1
         c=c+1
     if (int(n/f)!=(n/f)):#Cuando se pasa el limite de la raiz, lo ultimo que hace es fijar como factor de n a n
