@@ -1,10 +1,9 @@
 from tkinter import *#Label,Button,Toplevel,Entry,Tk,Checkbutton
 import Converciones_dec_otr as cvn
 import funciones as fun
-import TFNum
 import MCM_y_MCD as mc
-import factores
 from functools import partial
+import TFNum,primos,factores
 
         
 def ventana(titulo:str,tam:str,h:bool,v:bool):
@@ -208,7 +207,7 @@ def facto(inst):
     
     def sprm(p,sump,completo):
         sump.delete(0,1000)
-        sump.insert(0,fun.elim(fun.elim(fun.elim(str(factores.suma_de_primos(int(p.get()),completo.get())),"["),"]"),"'"))
+        sump.insert(0,fun.elim(fun.elim(fun.elim(str(primos.suma_de_primos(int(p.get()),completo.get())),"["),"]"),"'"))
     def fac(p,fact):
         fact.delete(0,1000)
         fact.insert(0,factores.factor2(factores.factor(int(p.get()),True)))   

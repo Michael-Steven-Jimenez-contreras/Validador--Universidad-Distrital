@@ -52,8 +52,3 @@ def n2d(x,base):
         val=val+arr[i-ent]*pow(base,ent)
         ent=ent-1
     return val
-#print("Introdusca un numero(valor del simbolo, A=10 en hexadecimal) con espacios entre cada simbolo, excepto entre la parte decimal y entrera, debe colocar un punto sin espacios")
-#x=input(">>")
-#print("Digite la base del numero")
-#base=int(input(">>"))
-#print(n2d(x,base))

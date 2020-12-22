@@ -82,19 +82,6 @@ def tohex(x,longit):
             a=dechexa.get(a)
         st=st+a+" "
     return st
-def mcd(a,b):
-    t=0
-    while (a%b)!=0:
-        t=(a%b)
-        a=b
-        b=t
-    if t!=0:
-        t=t
-    else:
-        t=b;
-    return t
-def mcm(a,b):
-    return (a*b)/mcd(a,b)
 
 def to_vec(x,longit):
     arr=np.array(range(longit))
