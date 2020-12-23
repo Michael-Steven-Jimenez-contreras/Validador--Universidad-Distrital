@@ -228,7 +228,7 @@ def facto(inst):
         
 
 def farit(inst):
-    vent=subventana(inst,"funciones aritmeticas","500x250",True,True)
+    vent=subventana(inst,"funciones aritmeticas","500x250",False,False)
     label1=Label(vent,text="evalua en:")
     entrada=Entry(vent,font=("calibri 12"))
     
