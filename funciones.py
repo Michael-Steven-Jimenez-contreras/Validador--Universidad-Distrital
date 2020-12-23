@@ -21,7 +21,7 @@ def repl(x,a,b):
             c=c+b
     return c
 
-def obtent(x):
+def obtent(x):#obtiene la parte entera
     i=0
     a=""
     x=x+" "
@@ -30,7 +30,7 @@ def obtent(x):
         i=i+1
     
     return a
-def obdec(x):
+def obdec(x):#obtiene la parte decimal
     i=0
     a=""
     x=x+" "

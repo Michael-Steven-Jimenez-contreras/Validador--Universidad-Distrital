@@ -41,6 +41,8 @@ def to_vec(x,longit):
     return arr
 
 def n2d(x,base):
+    if base<=1:
+        base=10
     if(fun.containt(x,'.')==False):
         x=x+".0"
     val=0

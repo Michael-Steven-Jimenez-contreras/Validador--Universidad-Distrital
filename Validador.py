@@ -177,7 +177,7 @@ def mcmmcd(inst):
         mcd.insert(0,mc.fmcm(p))
 
 def facto(inst):
-    vent=subventana(inst,"Factores","500x200",False,False)
+    vent=subventana(inst,"Factores","500x250",False,False)
     
     label1=Label(vent,text="Entrada(ej 34)")
     entrada=Entry(vent,font=("Calibri 12"))
@@ -186,9 +186,15 @@ def facto(inst):
     label3=Label(vent,text="E.suma de primos")
     salida2=Entry(vent,font=("calibri 12"))
     val=BooleanVar()
+    
+    label4=Label(vent,text="divisores primos")
+    salida3=Entry(vent,font=("calibri 12"))
+    
+    
     completo=Checkbutton(vent,text="Completo?",variable=val)
     aceptar1=Button(vent,text="aceptar",width=11,height=2,command=lambda: fac(entrada,salida1))
     aceptar2=Button(vent,text="aceptar",width=11,height=2,command=lambda: sprm(entrada,salida2,val))
+    aceptar3=Button(vent,text="aceptar",width=11,height=2,command=lambda: divs(entrada,salida3))
     
     backb=Button(vent,text="Volver al menu",width=11,height=2,command=lambda: volver(inst,vent))
     
@@ -203,17 +209,75 @@ def facto(inst):
     aceptar2.grid(row=2,column=5,padx=5,pady=5)
     completo.grid(row=2,column=6,padx=0,pady=5)
     
-    backb.grid(row=3,column=0,padx=0,pady=5)
+    label4.grid(row=3,column=0,padx=0,pady=5)
+    salida3.grid(row=3,column=1,columnspan=4,padx=0,pady=5)
+    aceptar3.grid(row=3,column=5,padx=0,pady=5)
+    
+    backb.grid(row=7,column=0,padx=0,pady=5)
+    
     
     def sprm(p,sump,completo):
         sump.delete(0,1000)
         sump.insert(0,fun.elim(fun.elim(fun.elim(str(primos.suma_de_primos(int(p.get()),completo.get())),"["),"]"),"'"))
     def fac(p,fact):
         fact.delete(0,1000)
-        fact.insert(0,factores.factor2(factores.factor(int(p.get()),True)))   
+        fact.insert(0,factores.factor2(factores.factor(int(p.get()),True))) 
+    def divs(p,d):
+        d.delete(0,1000)
+        d.insert(0,str(primos.divsP(int(p.get()))))
+        
+
+def farit(inst):
+    vent=subventana(inst,"funciones aritmeticas","500x250",True,True)
+    label1=Label(vent,text="evalua en:")
+    entrada=Entry(vent,font=("calibri 12"))
+    
+    label2=Label(vent,text="sigma:")
+    salida1=Entry(vent,font="calibri 12")
+    aceptar1=Button(vent,text="aceptar",width=11,height=2,command=lambda: sigma(entrada,salida1))
+    
+    label3=Label(vent,text="tau:")
+    salida2=Entry(vent,font="calibri 12")
+    aceptar2=Button(vent,text="aceptar",width=11,height=2,command=lambda: tau(entrada,salida2))
+    
+    label4=Label(vent,text="fi:")
+    salida3=Entry(vent,font="calibri 12")
+    aceptar3=Button(vent,text="aceptar",width=11,height=2,command=lambda: fi(entrada,salida3))
+    
+    backb=Button(vent,text="Volver al menu",width=11,height=2,command=lambda: volver(inst,vent))
+    
+    label1.grid(row=0,column=0,padx=0,pady=5)
+    entrada.grid(row=0,column=1,columnspan=4,padx=0,pady=5)
+    
+    label2.grid(row=1,column=0,padx=0,pady=5)
+    salida1.grid(row=1,column=1,columnspan=4,padx=0,pady=5)
+    aceptar1.grid(row=1,column=5,padx=5,pady=5)
+    
+    label3.grid(row=2,column=0,padx=0,pady=5)
+    salida2.grid(row=2,column=1,columnspan=4,padx=0,pady=5)
+    aceptar2.grid(row=2,column=5,padx=5,pady=5)
+    
+    label4.grid(row=3,column=0,padx=0,pady=5)
+    salida3.grid(row=3,column=1,columnspan=4,padx=0,pady=5)
+    aceptar3.grid(row=3,column=5,padx=0,pady=5)
+    
+    backb.grid(row=10,column=0,padx=5,pady=5)
+    
+    def fi(p,d):
+        d.delete(0,1000)
+        d.insert(0,str(primos.fi(int(p.get()))))
+    def tau(p,d):
+        d.delete(0,1000)
+        d.insert(0,str(primos.tau(int(p.get()))))
+    def sigma(p,d):
+        d.delete(0,1000)
+        d.insert(0,str(primos.sigma(int(p.get()))))
+
+
+
 
 def op_menu():
-    vent=ventana("Validador","530x380",False,False)
+    vent=ventana("Validador","530x500",False,False)
     #objetos de la interfaz
     #aut=Label(vent,text="Por: Michael Jimenez Contreras 20201020108")
     mater=Label(vent,text="Teoria de numeros G-83")
@@ -225,6 +289,8 @@ def op_menu():
     seccion2=Label(vent,text="Otras operaciones")
     bmcm=Button(vent,text="MCM y MCD de un conjunto",width=25,height=5,command=lambda: mcmmcd(vent))
     factors=Button(vent,text="Factores de un numero",width=25,height=5,command=lambda: facto(vent))
+    
+    bfarit=Button(vent,text="Funciones aritmeticas",width=25,height=5,command=lambda: farit(vent))
     #ubicacion
     #aut.grid(row=0,column=0,padx=0,pady=5)
     mater.grid(row=1,column=0,padx=0,pady=5)
@@ -236,6 +302,8 @@ def op_menu():
     seccion2.grid(row=5,column=0,padx=0,pady=5)
     bmcm.grid(row=6,column=0,padx=5,pady=5)
     factors.grid(row=6,column=1,padx=5,pady=5)
+    bfarit.grid(row=7,column=0,padx=5,pady=5)
+    
     vent.mainloop()
 
 if __name__=='__main__':

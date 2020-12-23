@@ -1,15 +1,15 @@
 import funciones as fun
 def d2bc(x,n):
+    if n<=1:
+        n=10
     if(fun.containt(x,'.')==False):
         x=x+".0"
     n=n+0
-    ent=int(fun.obtent(x))
-    dec=float(fun.obdec(x))
+    ent=int(float(x))
+    dec=float(x)-ent
 
     val=""
 
-    #print(">>",ent)
-    #print(">>",dec)
     i=0
     while dec>0 and i<20:
         val=val+" "+str(int(dec*n))
@@ -23,4 +23,5 @@ def d2bc(x,n):
     #print(x,"=",val)
     return val
 #d2b()
+
 
