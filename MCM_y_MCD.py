@@ -32,4 +32,3 @@ def fmcm(x:str):
         vmcm=mcm(vmcm,arr[i])
         i=i+1
     return vmcm
-
