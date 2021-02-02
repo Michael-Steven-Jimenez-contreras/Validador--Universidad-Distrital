@@ -24,6 +24,18 @@ def volver(org,inst):
     org.deiconify()
     inst.destroy()
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 def decbas(inst):
     
     def convertirdb(obj,a,b):
@@ -56,6 +68,16 @@ def decbas(inst):
     
 
         
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 def basdec(inst):
     bd=subventana(inst,"de otro sistema numerico a sistema decimal","560x250",False,False)
     #objetos
@@ -79,7 +101,16 @@ def basdec(inst):
     def convertirbd(obj,a,b):
         obj.delete(0,100)
         obj.insert(0,TFNum.n2d(a,int(b)))
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 def oper(inst):
     op=subventana(inst,"Operaciones en otras bases","500x300",False,False)
     #objetos
@@ -147,17 +178,31 @@ def oper(inst):
         lon=fun.arrlen(a,True)
         obj.insert(0,fun.tohex(a,lon))
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 def mcmmcd(inst):
-    vent=subventana(inst,"Operaciones en otras bases","500x150",False,False)
+    vent=subventana(inst,"MCM y MCD","500x600",True,True)
     #objetos
     entrada=Entry(vent,font=("Calibri 12"))
     salida1=Entry(vent,font=("Calibri 12"))
     salida2=Entry(vent,font=("Calibri 12"))
-    aceptar=Button(vent,text="aceptar",width=11,height=2,command=lambda: mcmyd(entrada.get(),salida1,salida2))
+    salida3=Entry(vent,font=("Calibri 12"))
+    proced=Text(vent,font=("Calibri 12"),width=50,height=20)
+    aceptar=Button(vent,text="aceptar",width=11,height=2,command=lambda: mcmyd(entrada.get(),salida1,salida2,salida3,proced))
     backb=Button(vent,text="Volver al menu",width=11,height=2,command=lambda: volver(inst,vent))
     label1=Label(vent,text="Entrada(ej 5,2,5)")
     label2=Label(vent,text="MCD")
     label3=Label(vent,text="MCM")
+    label4=Label(vent,text="TFA")
+    label5=Label(vent,text="Procedimiento:")
     #Ubicacion
     label1.grid(row=0,column=0,padx=0,pady=5)
     entrada.grid(row=0,column=1,columnspan=2,padx=0,pady=5)
@@ -167,17 +212,58 @@ def mcmmcd(inst):
     label3.grid(row=1,column=2,padx=0,pady=5)
     salida2.grid(row=1,column=3,padx=0,pady=5)
     
-    backb.grid(row=2,column=0,padx=0,pady=5)
-    aceptar.grid(row=2,column=1,padx=0,pady=5)
+    label4.grid(row=2,column=0,padx=0,pady=5)
+    salida3.grid(row=2,column=1,padx=0,pady=5)
     
-    def mcmyd(p,mcm,mcd):
-        mcm.delete(0,100)
-        mcd.delete(0,100)
-        mcm.insert(0,mc.fmcd(p))
-        mcd.insert(0,mc.fmcm(p))
+    label5.grid(row=3,column=0,padx=0,pady=5)
+    proced.grid(row=4,column=0,columnspan=10,padx=5,pady=1)
+    
+    backb.grid(row=5,column=0,padx=5,pady=5)
+    aceptar.grid(row=5,column=1,padx=5,pady=5)
+    
+    def mcmyd(p,mcd,mcm,TFA,proced):
+        mcm.delete(0,END)
+        mcd.delete(0,END)
+        TFA.delete(0,END)
+        proced.delete('1.0',END)
+        rmcd=mc.fmcd(p)
+        for i in range(len(rmcd[1])):
+            proced.insert(END,str(rmcd[1][i][0])+"="+str(rmcd[1][i][1])+"*"+str(rmcd[1][i][2])+"+"+str(rmcd[1][i][3])+"\n")
+        proced.insert(END,"\n\n")
+        ttfa=mc.TFA(rmcd[1])
+        proced.insert(END,ttfa[1])
+        
+        tfa=ttfa[0]
+        
+        mcd.insert(0,rmcd[0])
+        mcm.insert(0,mc.fmcm(p))  
+        
+        cad=str(tfa[0].poli)+"="
+        for i in range(1,len(tfa)-1):
+            cad+=str(tfa[i])+"+"
+        cad+=str(tfa[len(tfa)-1])
+        TFA.insert(0,cad)
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
 
 def facto(inst):
-    vent=subventana(inst,"Factores","500x250",False,False)
+    vent=subventana(inst,"Factores","500x250",True,True)
     
     label1=Label(vent,text="Entrada(ej 34)")
     entrada=Entry(vent,font=("Calibri 12"))
@@ -225,9 +311,29 @@ def facto(inst):
     def divs(p,d):
         d.delete(0,1000)
         d.insert(0,str(primos.divsP(int(p.get()))))
-        
+   
 
-def farit(inst):
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
+
+def Farit(inst):
     vent=subventana(inst,"funciones aritmeticas","500x250",False,False)
     label1=Label(vent,text="evalua en:")
     entrada=Entry(vent,font=("calibri 12"))
@@ -276,6 +382,20 @@ def farit(inst):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def op_menu():
     vent=ventana("Validador","530x500",False,False)
     #objetos de la interfaz
@@ -290,7 +410,7 @@ def op_menu():
     bmcm=Button(vent,text="MCM y MCD de un conjunto",width=25,height=5,command=lambda: mcmmcd(vent))
     factors=Button(vent,text="Factores de un numero",width=25,height=5,command=lambda: facto(vent))
     
-    bfarit=Button(vent,text="Funciones aritmeticas",width=25,height=5,command=lambda: farit(vent))
+    bfarit=Button(vent,text="Funciones aritmeticas",width=25,height=5,command=lambda: Farit(vent))
     #ubicacion
     #aut.grid(row=0,column=0,padx=0,pady=5)
     mater.grid(row=1,column=0,padx=0,pady=5)
