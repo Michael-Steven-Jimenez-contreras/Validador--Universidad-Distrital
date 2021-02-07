@@ -227,22 +227,27 @@ def mcmmcd(inst):
         TFA.delete(0,END)
         proced.delete('1.0',END)
         rmcd=mc.fmcd(p)
-        for i in range(len(rmcd[1])):
-            proced.insert(END,str(rmcd[1][i][0])+"="+str(rmcd[1][i][1])+"*"+str(rmcd[1][i][2])+"+"+str(rmcd[1][i][3])+"\n")
-        proced.insert(END,"\n\n")
-        ttfa=mc.TFA(rmcd[1])
-        proced.insert(END,ttfa[1])
-        
-        tfa=ttfa[0]
-        
+        try:
+            for i in range(len(rmcd[1])):
+                proced.insert(END,str(rmcd[1][i][0])+"="+str(rmcd[1][i][1])+"*"+str(rmcd[1][i][2])+"+"+str(rmcd[1][i][3])+"\n")
+            proced.insert(END,"\n\n")
+            ttfa=mc.TFA(rmcd[1])
+            proced.insert(END,ttfa[1])
+            
+            tfa=ttfa[0]
+        except:
+            pass
         mcd.insert(0,rmcd[0])
         mcm.insert(0,mc.fmcm(p))  
         
-        cad=str(tfa[0].poli)+"="
-        for i in range(1,len(tfa)-1):
-            cad+=str(tfa[i])+"+"
-        cad+=str(tfa[len(tfa)-1])
-        TFA.insert(0,cad)
+        try:
+            cad=str(tfa[0].poli)+"="
+            for i in range(1,len(tfa)-1):
+                cad+=str(tfa[i])+"+"
+            cad+=str(tfa[len(tfa)-1])
+            TFA.insert(0,cad)
+        except:
+            pass
         
         
         
